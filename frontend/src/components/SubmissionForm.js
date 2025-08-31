@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SubmissionForm.css';
 import { Send, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
-import { saveSubmission, saveNode, saveEdge } from '../firebaseConfig';
+import { saveSubmission, saveNode } from '../firebaseConfig';
 
 const SubmissionForm = ({ onSubmissionSuccess, onError }) => {
   const [text, setText] = useState('');
@@ -21,12 +21,12 @@ const SubmissionForm = ({ onSubmissionSuccess, onError }) => {
     setAnalysisResult(null);
 
     try {
-      const response = await fetch('/api/submit', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: text.trim(), type }),
+        body: JSON.stringify({ text: text.trim(), type: type }),
       });
 
       const data = await response.json();
@@ -53,13 +53,7 @@ const SubmissionForm = ({ onSubmissionSuccess, onError }) => {
             timestamp: new Date()
           });
 
-          // Save edges to Firebase if any
-          if (data.edges && data.edges.length > 0) {
-            for (const edge of data.edges) {
-              await saveEdge(edge);
-            }
-          }
-
+          // Note: Edges are now created directly by the backend
           console.log('✅ Data saved to Firebase successfully');
         } catch (firebaseError) {
           console.error('⚠️ Firebase save error (but ML analysis succeeded):', firebaseError);
@@ -213,10 +207,10 @@ const SubmissionForm = ({ onSubmissionSuccess, onError }) => {
             </div>
           </div>
 
-          {analysisResult.edges.length > 0 && (
+          {analysisResult.submission.similarSubmissions && analysisResult.submission.similarSubmissions.length > 0 && (
             <div className="similarity-info">
               <h4>Similar Submissions Found:</h4>
-              <p>This content is similar to {analysisResult.edges.length} other submission(s) in our database.</p>
+              <p>This content is similar to {analysisResult.submission.similarSubmissions.length} other submission(s) in our database.</p>
             </div>
           )}
         </div>

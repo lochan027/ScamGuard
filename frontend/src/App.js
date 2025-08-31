@@ -22,8 +22,8 @@ function App() {
 
   const fetchSubmissions = async () => {
     try {
-      const data = await getSubmissions();
-      setSubmissions(data);
+      const submissions = await getSubmissions();
+      setSubmissions(submissions);
     } catch (error) {
       console.error('Error fetching submissions from Firebase:', error);
       showToast('Error fetching submissions', 'error');
@@ -32,8 +32,8 @@ function App() {
 
   const fetchGraphData = async () => {
     try {
-      const data = await getGraphData();
-      setGraphData(data);
+      const graphData = await getGraphData();
+      setGraphData(graphData);
     } catch (error) {
       console.error('Error fetching graph data from Firebase:', error);
       showToast('Error fetching graph data', 'error');
