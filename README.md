@@ -10,7 +10,7 @@ ScamGuard is a full-stack web application that uses machine learning to detect a
 
 ## 🌟 **Live Demo**
 
-- **🌐 Frontend**: [https://rad-rabanadas-99540e.netlify.app](https://rad-rabanadas-99540e.netlify.app)
+- **🌐 Frontend**: [https://scammerdetectionnetwork.netlify.app](https://scammerdetectionnetwork.netlify.app/)
 - **🔧 Backend API**: [https://scam-guard-production.up.railway.app](https://scam-guard-production.up.railway.app)
 
 ## ✨ **Key Features**
@@ -255,16 +255,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 **Support**
 
-- **🐛 Bug Reports**: [GitHub Issues](https://github.com/yourusername/scamguard/issues)
-- **💡 Feature Requests**: [GitHub Discussions](https://github.com/yourusername/scamguard/discussions)
-- **📧 Email**: support@scamguard.com
-
-## 🌟 **Star History**
-
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/scamguard&type=Date)](https://star-history.com/#yourusername/scamguard&Date)
+- **🐛 Bug Reports**: [GitHub Issues](https://github.com/lochan027/scamguard/issues)
+- **💡 Feature Requests**: [GitHub Discussions](https://github.com/lochan027/scamguard/discussions)
+- **📧 Email**: lochanacharya0@gmail.com
 
 ---
 
-**Made with ❤️ by the ScamGuard Team**
+**Made with ❤️ **
 
 *Protecting users from scams, one submission at a time.* 🛡️✨
