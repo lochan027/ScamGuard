@@ -1,0 +1,122 @@
+{
+  "sampleSubmissions": [
+    {
+      "text": "URGENT: Your PayPal account has been suspended due to suspicious activity. Click here to verify your identity: https://paypal-secure-login.com/verify",
+      "type": "email",
+      "expectedRisk": "scam",
+      "features": {
+        "hasUrl": true,
+        "hasUrgency": true,
+        "hasThreat": true,
+        "hasAuthority": true,
+        "hasAction": true,
+        "hasSuspiciousDomain": true
+      }
+    },
+    {
+      "text": "Congratulations! You've won a $1000 gift card! Claim now at https://free-gift-claim.net",
+      "type": "sms",
+      "expectedRisk": "scam",
+      "features": {
+        "hasUrl": true,
+        "hasReward": true,
+        "hasCurrency": true,
+        "hasAction": true
+      }
+    },
+    {
+      "text": "Your Amazon order #12345 has been shipped and will arrive tomorrow. Track your package at amazon.com",
+      "type": "email",
+      "expectedRisk": "safe",
+      "features": {
+        "hasUrl": false,
+        "hasAuthority": true
+      }
+    },
+    {
+      "text": "Security Alert: Unusual login detected from new device. If this wasn't you, secure your account now: https://bankofamerica-secure.com/login",
+      "type": "sms",
+      "expectedRisk": "scam",
+      "features": {
+        "hasUrl": true,
+        "hasThreat": true,
+        "hasAuthority": true,
+        "hasAction": true,
+        "hasSuspiciousDomain": true
+      }
+    },
+    {
+      "text": "Hi there! I'm a Nigerian prince and I need your help to transfer $10 million. Please provide your bank details.",
+      "type": "email",
+      "expectedRisk": "scam",
+      "features": {
+        "hasCurrency": true,
+        "hasReward": true,
+        "hasAction": true
+      }
+    },
+    {
+      "text": "Your Netflix subscription will expire in 3 days. Click here to renew: https://netflix-billing-verify.com/renew",
+      "type": "email",
+      "expectedRisk": "scam",
+      "features": {
+        "hasUrl": true,
+        "hasUrgency": true,
+        "hasAuthority": true,
+        "hasAction": true,
+        "hasSuspiciousDomain": true
+      }
+    },
+    {
+      "text": "Thank you for your recent purchase. Your order has been confirmed and will ship within 2-3 business days.",
+      "type": "email",
+      "expectedRisk": "safe",
+      "features": {
+        "hasUrl": false
+      }
+    },
+    {
+      "text": "IRS Notice: You owe $2,500 in back taxes. Pay immediately or face legal action. Call 1-800-FAKE-IRS now!",
+      "type": "sms",
+      "expectedRisk": "scam",
+      "features": {
+        "hasPhone": true,
+        "hasCurrency": true,
+        "hasThreat": true,
+        "hasAuthority": true,
+        "hasUrgency": true
+      }
+    },
+    {
+      "text": "Your password will expire in 24 hours. Update now to avoid account suspension: https://microsoft-account-secure.net/password",
+      "type": "email",
+      "expectedRisk": "scam",
+      "features": {
+        "hasUrl": true,
+        "hasUrgency": true,
+        "hasThreat": true,
+        "hasAuthority": true,
+        "hasAction": true,
+        "hasSuspiciousDomain": true
+      }
+    },
+    {
+      "text": "Free shipping on all orders over $50! Limited time offer. Shop now at our official website.",
+      "type": "email",
+      "expectedRisk": "suspicious",
+      "features": {
+        "hasCurrency": true,
+        "hasReward": true,
+        "hasUrgency": true,
+        "hasAction": true
+      }
+    }
+  ],
+  "testInstructions": "Use these sample submissions to test the scam detection system. Each submission includes expected risk classification and key features that should be detected.",
+  "testingTips": [
+    "Submit each sample to see how the ML algorithm classifies it",
+    "Compare the detected features with the expected features",
+    "Check how the network graph visualizes connections between similar submissions",
+    "Verify that risk scores align with the expected classifications"
+  ]
+}

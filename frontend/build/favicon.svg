@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Shield background -->
+  <path d="M16 2L4 8v8c0 8.284 6.716 15 15 15s15-6.716 15-15V8L16 2z" 
+        fill="#667eea" stroke="#4c63d2" stroke-width="1"/>
+  
+  <!-- Shield inner -->
+  <path d="M16 4L6 9v7c0 7.18 5.82 13 13 13s13-5.82 13-13V9L16 4z" 
+        fill="#f8fafc"/>
+  
+  <!-- Shield border -->
+  <path d="M16 6L8 10v6c0 6.075 4.925 11 11 11s11-4.925 11-11v-6L16 6z" 
+        fill="none" stroke="#667eea" stroke-width="1.5"/>
+  
+  <!-- Checkmark -->
+  <path d="M12 18l3 3 5-5" 
+        stroke="#10b981" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Shield highlight -->
+  <path d="M16 4L6 9v7c0 7.18 5.82 13 13 13s13-5.82 13-13V9L16 4z" 
+        fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+</svg>
