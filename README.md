@@ -1,7 +1,6 @@
 # 🛡️ ScamGuard: Real-Time Scam Detection & Network Visualization
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/rad-rabanadas-99540e/deploy-status)](https://app.netlify.com/sites/rad-rabanadas-99540e/deploys)
-[![Railway Status](https://railway.app/badge.svg)](https://railway.app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > **AI-Powered Scam Detection with Real-Time Network Visualization**
@@ -11,7 +10,7 @@ ScamGuard is a full-stack web application that uses machine learning to detect a
 ## 🌟 **Live Demo**
 
 - **🌐 Frontend**: [https://scammerdetectionnetwork.netlify.app](https://scammerdetectionnetwork.netlify.app/)
-- **🔧 Backend API**: [https://scam-guard-production.up.railway.app](https://scam-guard-production.up.railway.app)
+- **🔧 Backend API**: [https://scammerdetectionnetwork.netlify.app/.netlify/functions](https://scammerdetectionnetwork.netlify.app/.netlify/functions)
 
 ## ✨ **Key Features**
 
@@ -20,24 +19,34 @@ ScamGuard is a full-stack web application that uses machine learning to detect a
 - **🔍 Feature Analysis**: URL, text, and pattern-based detection
 - **⚡ Live Updates**: Real-time Firebase synchronization
 - **📱 Responsive Design**: Modern glassmorphism UI
-- **🌍 Production Ready**: Deployed on Netlify + Railway + Firebase
+- **🌍 Production Ready**: Deployed on Netlify + Firebase (Serverless Architecture)
 
 ## 🏗️ **Architecture Overview**
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   React Frontend│    │   Node.js API   │    │   Firebase      │
-│   + D3.js Graph│◄──►│   + ML Engine   │◄──►│   Firestore     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
+┌─────────────────┐    ┌─────────────────────────┐    ┌─────────────────┐
+│   React Frontend│    │   Netlify Functions     │    │   Firebase      │
+│   + D3.js Graph│◄──►│   + ML Engine           │◄──►│   Firestore     │
+└─────────────────┘    └─────────────────────────┘    └─────────────────┘
          │                       │                       │
          ▼                       ▼                       ▼
-    Netlify Hosting        Railway Backend        Google Cloud
+    Netlify Hosting        Netlify Functions        Google Cloud
+         │                       │                       │
+         │                       ▼                       │
+         └──────────────► Serverless ML API ◄──────────┘
 ```
+
+### **Architecture Benefits:**
+- **🚀 Serverless**: No server management, auto-scaling
+- **💰 Cost-Effective**: Pay only for function executions
+- **⚡ Fast**: Global CDN with edge functions
+- **🔒 Secure**: Built-in security and authentication
+- **🔄 Real-Time**: Instant ML analysis and updates
 
 ## 🚀 **Quick Start**
 
 ### **Option 1: Use Live Demo**
-Visit [https://rad-rabanadas-99540e.netlify.app](https://rad-rabanadas-99540e.netlify.app) and start analyzing content immediately!
+Visit [https://scammerdetectionnetwork.netlify.app](https://scammerdetectionnetwork.netlify.app) and start analyzing content immediately!
 
 ### **Option 2: Run Locally**
 
@@ -52,19 +61,21 @@ git clone <your-repo-url>
 cd SDA
 ```
 
-#### **2. Backend Setup**
+#### **2. Backend Setup (Netlify Functions)**
 ```bash
-# Install dependencies
+# Install dependencies for Netlify Functions
+cd netlify/functions
 npm install
 
-# Create .env file
+# Create .env file in root directory
+cd ../..
 cp .env.example .env
 
 # Add your Firebase service account to .env
 FIREBASE_SERVICE_ACCOUNT={"type":"service_account",...}
 
-# Start backend
-npm run dev
+# Test functions locally (optional)
+netlify dev
 ```
 
 #### **3. Frontend Setup**
@@ -81,7 +92,7 @@ cp .env.example .env
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_domain
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-REACT_APP_API_URL=http://localhost:5001
+REACT_APP_API_URL=http://localhost:8888/.netlify/functions
 
 # Start frontend
 npm start
@@ -89,27 +100,27 @@ npm start
 
 #### **4. Access Application**
 - Frontend: http://localhost:3000
-- Backend API: http://localhost:5001
+- Backend API: http://localhost:8888/.netlify/functions (when using `netlify dev`)
 
 ## 🧪 **Testing the ML Engine**
 
 ### **Test Safe Content**
 ```bash
-curl -X POST http://localhost:5001/api/submit \
+curl -X POST https://scammerdetectionnetwork.netlify.app/.netlify/functions/submit \
   -H "Content-Type: application/json" \
   -d '{"text": "Hello, how are you today?", "type": "text"}'
 ```
 
 ### **Test Suspicious Content**
 ```bash
-curl -X POST http://localhost:5001/api/submit \
+curl -X POST https://scammerdetectionnetwork.netlify.app/.netlify/functions/submit \
   -H "Content-Type: application/json" \
   -d '{"text": "URGENT: Your account needs verification", "type": "email"}'
 ```
 
 ### **Test High-Risk Scam**
 ```bash
-curl -X POST http://localhost:5001/api/submit \
+curl -X POST https://scammerdetectionnetwork.netlify.app/.netlify/functions/submit \
   -H "Content-Type: application/json" \
   -d '{"text": "URGENT: Your PayPal account suspended. Click: https://fake-paypal.com", "type": "email"}'
 ```
@@ -117,31 +128,30 @@ curl -X POST http://localhost:5001/api/submit \
 ## 📚 **Documentation**
 
 - **[📖 Technical Documentation](TECHNICAL_DOCUMENTATION.md)** - Complete architecture, ML models, and implementation details
-- **[🚀 Deployment Guides](NETLIFY-DEPLOYMENT.md)** - Frontend deployment to Netlify
-- **[🔧 Backend Deployment](RAILWAY-DEPLOYMENT.md)** - Backend deployment to Railway
-- **[📁 API Reference](#api-reference)** - REST API endpoints and usage
+- **[🚀 Deployment Guides](NETLIFY-DEPLOYMENT.md)** - Full-stack deployment to Netlify
+- **[📁 API Reference](#api-reference)** - Netlify Functions API endpoints and usage
 
-## 🔧 **API Reference**
+## 📝 **API Reference**
 
 ### **Base URL**
 ```
-Production: https://scam-guard-production.up.railway.app
-Local: http://localhost:5001
+Production: https://scammerdetectionnetwork.netlify.app/.netlify/functions
+Local: http://localhost:8888/.netlify/functions
 ```
 
 ### **Endpoints**
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `POST` | `/api/submit` | Submit content for analysis |
-| `GET` | `/api/submissions` | Get all submissions |
-| `GET` | `/api/graph` | Get network graph data |
-| `GET` | `/api/health` | Health check |
+| `POST` | `/submit` | Submit content for analysis |
+| `GET` | `/submissions` | Get all submissions |
+| `GET` | `/graph` | Get network graph data |
+| `GET` | `/health` | Health check |
 
 ### **Example API Usage**
 ```javascript
 // Submit content for analysis
-const response = await fetch('/api/submit', {
+const response = await fetch('/.netlify/functions/submit', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -182,37 +192,40 @@ All data is stored in Firebase Firestore with real-time synchronization.
 - **CSS3** - Glassmorphism design
 - **Firebase SDK** - Real-time data sync
 
-### **Backend**
+### **Backend (Netlify Functions)**
 - **Node.js 18+** - Runtime environment
-- **Express.js** - Web framework
+- **Serverless Functions** - Auto-scaling ML API
 - **Firebase Admin SDK** - Server-side Firebase access
 - **Natural Language Processing** - Text analysis
+- **Heuristic ML Engine** - Pattern-based classification
 
 ### **Infrastructure**
-- **Netlify** - Frontend hosting & CDN
-- **Railway** - Backend hosting
+- **Netlify** - Frontend hosting, CDN & serverless backend
 - **Firebase Firestore** - NoSQL database
 - **Google Cloud Platform** - Infrastructure
+- **Serverless Architecture** - No server management needed
 
 ## 📊 **Performance Metrics**
 
-- **⚡ Response Time**: <200ms for ML analysis
+- **⚡ Response Time**: <500ms for ML analysis (cold start), <200ms (warm)
 - **🎯 Accuracy**: 94.2% on test dataset
-- **📈 Throughput**: 100+ requests/minute
-- **💾 Memory**: <512MB per instance
+- **📈 Throughput**: Auto-scaling based on demand
+- **💾 Memory**: Serverless - no memory management needed
 - **🔄 Real-time**: <1 second update latency
+- **🌍 Global**: Edge functions for low-latency worldwide
 
 ## 🔒 **Security & Privacy**
 
 - **🛡️ Input Sanitization**: XSS prevention
-- **🚫 Rate Limiting**: API abuse prevention
+- **🚫 Rate Limiting**: Built-in Netlify protection
 - **🔐 Firebase Rules**: Database access control
 - **👤 Anonymous**: No personal data collection
 - **🌍 CORS**: Cross-origin security
+- **🔒 Serverless Security**: Isolated function execution
 
 ## 🚀 **Deployment**
 
-### **Frontend (Netlify)**
+### **Full-Stack (Netlify)**
 ```bash
 # Automatic deployment
 ./deploy-netlify.sh
@@ -221,16 +234,17 @@ All data is stored in Firebase Firestore with real-time synchronization.
 cd frontend
 npm run build
 # Drag 'build' folder to Netlify
+# Functions deploy automatically with frontend
 ```
 
-### **Backend (Railway)**
+### **Local Development**
 ```bash
-# Automatic deployment
-./deploy-railway.sh
+# Start Netlify Functions locally
+netlify dev
 
-# Manual deployment
-railway login
-railway up
+# Start frontend
+cd frontend
+npm start
 ```
 
 ## 🤝 **Contributing**
@@ -251,7 +265,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **UCI ML Repository** - SMS spam dataset
 - **D3.js** - Data visualization library
 - **Firebase** - Backend-as-a-Service
-- **Netlify & Railway** - Hosting platforms
+- **Netlify** - Serverless hosting platform
 
 ## 📞 **Support**
 
